@@ -4,14 +4,12 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
   mode: "production",
 
-  entry: {
-    main: path.resolve(__dirname, "src", "index.js"),
-  },
+  entry: path.resolve(__dirname, "src", "index.js"),
 
   output: {
-    path: path.resolve(__dirname, "public"),
-    filename: "main.bundle.js",
     clean: true,
+    filename: "main.js",
+    path: path.resolve(__dirname, "public"),
   },
 
   module: {
@@ -25,7 +23,7 @@ module.exports = {
         type: "asset/resource",
       },
       {
-        test: /\.(js|jsx)/i,
+        test: /\.(js|jsx|ts|tsx)/i,
         exclude: /(node_modules)/,
         use: {
           loader: "babel-loader",
@@ -44,15 +42,21 @@ module.exports = {
       template: require("html-webpack-template"),
       bodyHtmlSnippet: `
       <div id="root"></div>
-      <script src="./main.bundle.js"></script>
+      <script src="./main.js"></script>
       `,
     }),
   ],
 
   devServer: {
     port: 3000,
+    hot: true,
     open: true,
     liveReload: true,
     static: path.resolve(__dirname, "public"),
+  },
+
+  performance: {
+    maxAssetSize: 100000,
+    maxEntrypointSize: 400000,
   },
 };
