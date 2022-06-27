@@ -51,7 +51,7 @@ module.exports = {
     port: 3000,
     hot: true,
     open: true,
-    liveReload: true,
+    liveReload: false,
     static: path.resolve(__dirname, "public"),
   },
 
