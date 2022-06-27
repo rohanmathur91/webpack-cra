@@ -1,6 +1,7 @@
-import { App } from "./App";
+import React from "react";
+import { createRoot } from "react-dom/client";
+import { App } from "./App.jsx";
 
-const root = document.getElementById("root");
-root.innerHTML = `<h1>Welcome to your own CRA</h1> \n ${App({
-  name: "Rohan",
-})}`;
+const rootElement = document.getElementById("root");
+const root = createRoot(rootElement);
+root.render(<App />);
