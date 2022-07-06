@@ -1,4 +1,5 @@
 const path = require("path");
+const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
@@ -45,6 +46,11 @@ module.exports = {
       <script src="./main.js"></script>
       `,
     }),
+
+    // provides the "react" library for all the files
+    new webpack.ProvidePlugin({
+      React: "react",
+    }),
   ],
 
   devServer: {
@@ -53,10 +59,5 @@ module.exports = {
     open: true,
     liveReload: false,
     static: path.resolve(__dirname, "public"),
-  },
-
-  performance: {
-    maxAssetSize: 100000,
-    maxEntrypointSize: 400000,
   },
 };
